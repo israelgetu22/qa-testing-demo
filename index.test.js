@@ -41,8 +41,31 @@ describe("formatTitle tests", () => {
 });
 //test toBe vs toEqual
 
-test("toBe vs toEqual, what's the differenve", () => {
+test("toBe vs toEqual, what's the difference", () => {
   const myObj = { myNum: 4 };
   const myObj2 = { myNum: 4 };
   expect(myObj).toEqual(myObj2); //toBe is not working
+});
+
+describe("shortenBio test", () => {
+  let shortBio = shortenBio(testData.bio);
+  test("should shorten the bio string", () => {
+    expect(shortBio.length).toBeLessThan(testData.bio.length);
+  });
+
+  it("should add periods to the end of the string", () => {
+    expect(shortBio).toContain("..");
+  });
+});
+
+describe("convertLength test", () => {
+  it("should return an array with 2", () => {
+    let result = convertLength(testData.length);
+    expect(result).toHaveLength(2);
+  });
+
+  test("can handle numbers under 60", () => {
+    let result = convertLength(30);
+    expect(result[1]).toEqual(30);
+  });
 });
